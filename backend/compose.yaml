@@ -16,7 +16,7 @@ services:
       DATABASE_URL: ${DATABASE_URL}
       COUNTRIES_API_BASE_URL: ${COUNTRIES_API_BASE_URL}
     ports:
-      - 3001:3001
+      - 3000:3000
     depends_on:
       db:
         condition: service_healthy
