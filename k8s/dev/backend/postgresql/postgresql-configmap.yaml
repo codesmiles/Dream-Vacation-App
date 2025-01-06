@@ -1,0 +1,14 @@
+# ConfigMap for non-sensitive configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: dev
+  labels:
+    app: postgres
+    tier: database
+  annotations:
+    description: "Postgres database configuration"
+data:
+  POSTGRES_DB: "your_database"
+  POSTGRES_USER: "your_username"

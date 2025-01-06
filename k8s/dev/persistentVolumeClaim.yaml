@@ -1,0 +1,29 @@
+---
+# PersistentVolumeClaim configuration
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: dev
+  labels:
+    type: local-storage
+    app: postgres
+    environment: dev
+  annotations:
+    description: "Postgres database storage claim"
+    team: "database-team"
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 5Gi
+    limits:
+      storage: 5Gi
+  selector:
+    matchLabels:
+      type: local-storage
+      app: postgres

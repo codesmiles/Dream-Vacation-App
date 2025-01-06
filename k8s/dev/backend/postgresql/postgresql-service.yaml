@@ -1,0 +1,23 @@
+# Service configuration
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: dev
+  labels:
+    app: postgres
+    tier: database
+  annotations:
+    description: "Postgres database service"
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9187"
+spec:
+  type: ClusterIP  # Changed from NodePort for better security
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    app: postgres
+    tier: database

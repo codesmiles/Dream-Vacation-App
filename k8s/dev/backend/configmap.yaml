@@ -1,0 +1,15 @@
+# ConfigMap for non-sensitive configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: dev
+  labels:
+    app: backend
+    tier: application
+data:
+  NODE_ENV: "production"
+  COUNTRIES_API_BASE_URL: "https://api.example.com"
+  # Updated DATABASE_URL to match postgres service configuration
+  DATABASE_URL: "postgresql://your_username:$(POSTGRES_PASSWORD)@postgres:5432/dreamvacations"
+

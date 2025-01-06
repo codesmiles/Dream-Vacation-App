@@ -1,0 +1,29 @@
+# PersistentVolume configuration
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+  labels:
+    type: local-storage
+    app: postgres
+    environment: dev
+  annotations:
+    description: "Postgres database storage"
+    team: "database-team"
+    created-by: "infrastructure-team"
+  finalizers:
+    - kubernetes.io/pv-protection
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  hostPath:
+    path: /mnt/data/postgres
+    type: DirectoryOrCreate
